@@ -4,12 +4,13 @@ using System.Diagnostics;
 
 class Program
 {
-    public const int l = 2;
-    public const int c = 2;
+    public const int l = 10;
+    public const int c = 10;
     public static int[,] mat = new int[l, c];
     public static int somaA = 0;
     public static int somaB = 0;
     public static int somaTotal = 0;
+
     static void Main()
     {
         Random rnd = new Random();
@@ -20,12 +21,22 @@ class Program
 
         Console.WriteLine("Dimensão da Matriz: " + l + "x" + c + "\n");
 
+        int numeroDaColuna = 0;
+
         for (int i = 0; i < l; i++)
         {
+            numeroDaColuna++;
+            
+            Console.Write("Coluna:" + numeroDaColuna);
+            
             for (int j = 0; j < c; j++)
             {
-                mat[i, j] = rnd.Next(1, 10);
+                
+                mat[i, j] = rnd.Next(10, 99);
+                
                 Console.Write("\t" + mat[i, j]);
+                Console.Write(" |");
+
             }
             Console.WriteLine(" ");
         }
@@ -41,8 +52,12 @@ class Program
 
         somaTotal = somaA + somaB;
 
-        Console.WriteLine("Soma Total : " + somaTotal);
+       // Console.WriteLine("Valor somado da Thread A: " + somaA);
+       // Console.WriteLine("Valor somado da Thread B: " + somaB);
+        Console.WriteLine("Soma total das threads: " + somaTotal);
        
+        stopWatch.Stop();
+        Console.WriteLine($"\nO Tempo de processamento total é de {stopWatch.ElapsedMilliseconds}ms");
 
     }
     private static void SomarA()
@@ -51,27 +66,27 @@ class Program
         {
             for (int j = 0; j < c; j++)
             {
-                somaA += mat[i, j];
-                //Console.Write(mat[i, j]);
+              somaA += mat[i, j];
+               
             }
             Console.WriteLine(" ");
         }
-        Console.WriteLine("\nSomaA total: " + somaA);
+        Console.WriteLine("Soma metade da thread 1: " + somaA);
         
     }
 
     private static void SomarB()
     {
-        for (int i = (l) / 2; i < l; i++)
+        for (int i = l/ 2; i < l; i++)
         {
-            for (int j = (c)/2 ; j < c; j++)
+            for (int j = 0 ; j < c; j++)
             {
                 somaB += mat[i, j];
-                //Console.Write("\t" + mat[i, j]);
+                
             }
             Console.WriteLine(" ");
         }
-        Console.WriteLine("\nSomaB total: " + somaB);
+        Console.WriteLine("Soma metade da thread 2: " + somaB);
 
     }
 
