@@ -4,8 +4,8 @@ using System.Diagnostics;
 
 class Program
 {
-    public const int l = 3;
-    public const int c = 3;
+    public const int l = 2;
+    public const int c = 2;
     public static int[,] mat = new int[l, c];
     public static int somaA = 0;
     public static int somaB = 0;
@@ -49,14 +49,14 @@ class Program
     {
         for (int i = 0; i < l/2; i++)
         {
-            for (int j = 0; j < c/2; j++)
+            for (int j = 0; j < c; j++)
             {
                 somaA += mat[i, j];
                 //Console.Write(mat[i, j]);
             }
             Console.WriteLine(" ");
         }
-        //Console.WriteLine("\nSoma total: " + soma);
+        Console.WriteLine("\nSomaA total: " + somaA);
         
     }
 
@@ -64,14 +64,14 @@ class Program
     {
         for (int i = (l) / 2; i < l; i++)
         {
-            for (int j = (c) / 2; j < c; j++)
+            for (int j = (c)/2 ; j < c; j++)
             {
                 somaB += mat[i, j];
                 //Console.Write("\t" + mat[i, j]);
             }
             Console.WriteLine(" ");
         }
-        //Console.WriteLine("\nSoma total: " + soma);
+        Console.WriteLine("\nSomaB total: " + somaB);
 
     }
 
